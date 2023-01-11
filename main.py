@@ -9,6 +9,7 @@ class DownLoader(QMainWindow):
    url=''
    yt = None
    stream=None
+   
 
    def __init__(self):
       super(DownLoader, self).__init__()
@@ -17,7 +18,8 @@ class DownLoader(QMainWindow):
       self.ui.pushButton_3.clicked.connect(self.clicl_ok)
       self.ui.pushButton_2.clicked.connect(self.downloads)
       self.ui.comboBox.currentTextChanged.connect(self.comboBox_changed)
-      
+      self.ui.lineEdit.setPlaceholderText("Enter your URL")
+      self.ui.lineEdit_2.setPlaceholderText("D:\\")
 
    def clicl_ok(self) -> None:
       
@@ -35,13 +37,16 @@ class DownLoader(QMainWindow):
 
 
       except:
-         url=self.ui.lineEdit.setText("error") 
+         self.ui.lineEdit.setText("error") 
       
 
    def downloads(self):
       global stream
+      path=self.ui.lineEdit_2.text()
+      if path=='':
+         path="D:\\ttt"
       try:
-         stream.download()
+         stream.download(path)
       except:
          print("не захотел качаться") 
 
