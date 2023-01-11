@@ -17,10 +17,13 @@ class DownLoader(QMainWindow):
     def sourse(self) -> None:
         yt = YouTube('https://youtu.be/q3ma5waVGb0')
         videos = yt.streams.filter(file_extension='mp4')
-
+        list1 = []                 
+        str_=''
         for v in videos:
-            print(v.resolution)
-            self.ui.comboBox.addItems(v.resolution)
+            
+            list1.append(str(v.itag))
+        print(*list1) 
+        self.ui.comboBox.addItems(list1)
             
          # stream = yt.streams.get_by_itag(18)
          # stream.download()
